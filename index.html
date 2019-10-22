@@ -21,6 +21,26 @@
   <!-- Main code -->
   <script>
     // write your code here
+    const SCRABBLE_SCORES = {
+      "a": 1, "b": 3, "c": 3, "d": 2, "e": 1, "f": 4, "g": 2, "h": 4, "i": 1, "j": 8, "k": 5, "l": 1, "m": 3, "n": 1, "o": 1, "p": 3, "q": 10, "r": 1, "s": 1, "t": 1, "u": 1, "v": 4, "w": 4, "x": 8, "y": 4, "z": 10
+    }
+
+    const wordScoreAccumulator = (accumulatedScore, currentLetter) => {
+      return accumulatedScore + SCRABBLE_SCORES[currentLetter]
+    }
+
+    const wordScoreBeforeMultiplication = word => {
+      const arrOfLetters = word.split('')
+      return arrOfLetters.reduce(wordScoreAccumulator, 0)
+    }
+
+    const wordScore = (word) => {
+      const preBonus = wordScoreBeforeMultiplication(word) * word.length
+      return word.length === 7
+        ? preBonus + 50
+        : preBonus
+    }
+
   </script>
 ​
   <!-- tests -->
@@ -29,6 +49,36 @@
   </script>
   <script>
     // write your tests here
+
+    describe('wordScoreAccumulator', () => {
+      it("take an accumulated score and a letter and adds the letter's score to the accumulator", () => {
+        expect(wordScoreAccumulator(11, 'b')).to.equal(14)
+      })
+    })
+
+    describe('wordScoreBeforeMultiplication', () => {
+      it("scores 'great' as 6", () => {
+        expect(wordScoreBeforeMultiplication('great')).to.equal(6)
+      })
+    })
+
+    describe("wordScore", () => {
+      describe("no bonus", () => {
+        it("scores 'great' as 30", () => {
+          expect(wordScore('great')).to.equal(30)
+        })
+
+        it("scores 'melon' as 35", () => {
+          expect(wordScore('melon')).to.equal(35)
+        })
+      })
+
+      describe("with bonus", () => {
+        it("scores 'deceive' as 141", () => {
+          expect(wordScore('deceive')).to.equal(141)
+        })
+      })
+    })
   </script>
   <script class="mocha-exec">
     mocha.run();
