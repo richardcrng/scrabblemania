@@ -26,10 +26,7 @@
     }
 
     const wordScoreAccumulator = (accumulatedScore, currentLetter) => {
-      const scoreToAdd = SCRABBLE_SCORES[currentLetter]
-      const total = accumulatedScore + SCRABBLE_SCORES[currentLetter]
-      console.log('accumulator', accumulatedScore, 'currentLetter', currentLetter, 'scoreToAdd', scoreToAdd, 'new value of accumulator', total)
-      return total
+      return accumulatedScore + SCRABBLE_SCORES[currentLetter]
     }
 
     const wordScoreBeforeMultiplication = word => {
