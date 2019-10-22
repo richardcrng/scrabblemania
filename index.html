@@ -29,6 +29,28 @@
   </script>
   <script>
     // write your tests here
+
+    describe("wordScore", () => {
+      describe("no bonus", () => {
+        it("scores 'great' as 30", () => {
+          expect(wordScore('great')).to.equal(30)
+        })
+
+        it("scores 'melon' as 35", () => {
+          expect(wordScore('melon')).to.equal(35)
+        })
+      })
+
+      describe("with bonus", () => {
+        it("scores 'deceive' as 141", () => {
+          expect(wordScore('deceive')).to.equal(141)
+        })
+      })
+    })
+
+    Test.assertEquals(wordscore('great'), 30, "The expected score for 'great' was 30. ")
+      Test.assertEquals(wordscore('deceive'), 141, "'deceive' is seven letters, the expected result was 141")
+      Test.assertEquals(wordscore('melon'), 35, "The expected score for 'melon' was 35.")
   </script>
   <script class="mocha-exec">
     mocha.run();
