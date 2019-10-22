@@ -35,7 +35,10 @@
     }
 
     const wordScore = (word) => {
-      return wordScoreBeforeMultiplication(word) * word.length
+      const preBonus = wordScoreBeforeMultiplication(word) * word.length
+      return word.length === 7
+        ? preBonus + 50
+        : preBonus
     }
 
   </script>
